@@ -6,12 +6,14 @@
 
     _Easy.fn = _Easy.prototype = {
         version:'1.0',
-        constructor:_Easy,
-        init:function(selector,context){
-
-        }
-
+        constructor:_Easy
     }
 
+    _Easy.fn.init = function(selector,context){
+        
+    }
+    
     _Easy.fn.init.prototype = _Easy.fn;
+    
+    window.$ = _Easy;
 })(window,undefined)
