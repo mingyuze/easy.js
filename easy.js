@@ -50,7 +50,7 @@
     }
 
     _Easy.fn.init = function (selector, context) {
-        var elemRegex = /^(?:(\w+)|#([\w-]+)|\.([\w-]+)|(<[\w\s\S-]+><\/[\w\s\S-]+>))$/; // tag | id | class | code space
+        var elemRegex = /^(?:(\w+)|#([\w-]+)|\.([\w-]+)|(<[\w\s\S-]+><\/[\w\s\S-]+>))$/; // tag | id | class | code snippets
         var match;
 
         if (!selector) {
