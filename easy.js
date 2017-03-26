@@ -28,20 +28,25 @@
             return num != null ? this[num < 0 ? num + this.length : num] : this;
         },
         merge: function (elems, context) {
-            var newObj = context || this;
+            var newObj = context || this,
+                i=0,
+                len = elems.length;
 
             if (elems.length > 0) {
                 for (var i = 0; i < elems.length; i++) {
                     newObj.push(elems[i]);
                 }
             }
-            else if(typeof elems === 'object'){
+            else if (typeof elems === 'object') {
                 newObj.push(elems);
             }
 
             _rootEasy ? newObj.prevObject = this.prevObject ? this : _rootEasy : null;
             newObj.context = this.context || document;
             return newObj;
+        },
+        each: function (callback, args) {
+            return _Easy.each(this, callback, args);
         },
 
         push: Array.prototype.push,
@@ -87,6 +92,31 @@
 
     _Easy.fn.init.prototype = _Easy.fn;
     _rootEasy = _Easy(document);
+
+    _Easy.each = function (obj, callback, args) {
+        var res,
+            i = 0,
+            len = obj.length;
+
+        if (obj instanceof Array) {
+            for (; i < len; i++) {
+                res = callback.call(obj[i], i, obj[i], args);
+
+                if (res === false) {
+                    break;
+                }
+            }
+        }
+        else if (typeof target === 'object') {
+            for (i in obj) {
+                res = callback.call(obj[i], i, obj[i], args);
+
+                if (res === false) {
+                    break;
+                }
+            }
+        }
+    }
 
     window.$ = _Easy;
 })(window, undefined)
