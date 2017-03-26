@@ -13,7 +13,7 @@
 
         eq: function (num) {
             num = num != null ? (num < 0 ? num + this.length : num) : 0;
-            return !this[num] || this.merge(this[num], this.constructor(null));
+            return this[num] ? this.merge(this[num], this.constructor(null)) : undefined;
         },
         first: function () {
             return this.eq(0);
